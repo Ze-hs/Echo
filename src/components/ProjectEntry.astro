@@ -1,0 +1,14 @@
+---
+const { title, description, demo, github, technologies } = Astro.props;
+---
+
+<div>
+    <p>{title}</p>
+    <p>{description}</p>
+    {demo !== undefined && <a href="">Demo</a>}
+    {github !== undefined && <a href="">github</a>}
+
+    <ul>
+        {technologies.map((tech: string) => <li>tech</li>)}
+    </ul>
+</div>

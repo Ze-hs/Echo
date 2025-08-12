@@ -1,0 +1,25 @@
+---
+import Navigation from "./Navigation.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<header class="border-b border-border">
+    <div
+        class="max-w-3xl mx-auto flex justify-between py-4 px-8 w-full border-x border-border"
+    >
+        <Navigation />
+
+        <!-- Includes search bar, rss button and theme switcher -->
+        <div class="flex gap-4">
+            <button
+                ><Icon
+                    class="size-5"
+                    name="material-symbols:wb-sunny-rounded"
+                /></button
+            >
+            <button
+                ><Icon class="size-5" name="material-symbols:search" /></button
+            >
+        </div>
+    </div>
+</header>

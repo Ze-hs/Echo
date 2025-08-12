@@ -1,0 +1,56 @@
+---
+import type { BlogPost } from "../env";
+import { Icon } from "astro-icon/components";
+import { convertDate, slugify } from "../utils/utils";
+
+const post: BlogPost = Astro.props.post;
+const { pubDate, updatedDate, title, description, tags } = post.data;
+---
+
+<div class="group">
+    <div
+        class="py-6 flex flex-col gap-3 transform transition-transform duration-300 group-hover:translate-x-4"
+    >
+        <!-- Dates: Published - Edited -->
+        <div class="flex gap-4 text-xs sm:text-sm text-muted-foreground">
+            <div class="flex items-center content-center gap-1">
+                <Icon name="ph:calendar-blank" class="size-4" />
+                {convertDate(pubDate)}
+            </div>
+            <div class="flex items-center content-center gap-1">
+                {
+                    updatedDate && (
+                        <>
+                            <Icon name="ph:calendar-blank" class="size-4" />
+                            {convertDate(updatedDate)}
+                        </>
+                    )
+                }
+            </div>
+        </div>
+
+        <a href={`blog/${slugify(title)}`} class="text-base">
+            <h4 class="line-clamp-2">{title}</h4>
+            <p class="mt-2 text-muted-foreground line-clamp-2 text-sm w-[90%]">
+                {description}
+            </p>
+        </a>
+
+        <!-- List of tags -->
+        <div class="flex gap-4">
+            {
+                tags.map((tag) => {
+                    return (
+                        <a
+                            class="font-medium text-xs px-2 py-0.5 gap-1 bg-muted/40 text-muted-foreground hover:bg-muted/60 hover:text-foreground "
+                            href={`/tags/${tag}`}
+                        >
+                            <Icon class="inline size-2.5" name="ph:hash-bold" />
+                            {tag}
+                        </a>
+                    );
+                })
+            }
+        </div>
+    </div>
+</div>

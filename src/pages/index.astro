@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import BlogCardCompact from "../components/BlogCardCompact.astro";
+
+import Prose from "../components/Prose.astro";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const posts = await getCollection("blog");
+const filteredPosts = posts
+    .sort((a, b) => a.data.pubDate.getTime() - b.data.pubDate.getTime())
+    .slice(0, 5);
+---
+
+<Layout>
+    <!-- Hero -->
+    <div class="py-8 px-8 pb-10 border-b border-border">
+        <h1 class="text-4xl sm:text-5xl">User</h1>
+        <h2 class="text-3xl sm:text-3xl font-extralight text-muted-foreground">
+            Title
+        </h2>
+
+        <div class="text-muted-foreground pro text-balance">
+            <p class="mt-6">
+                Hi Everyone! I work at Company X and my role is Y
+            </p>
+            <p class="mt-6">
+                Outside of work, I enjoy doing X and Y. I'm particularly
+                interested in Z. Some fun facts about me is that I can do ___
+            </p>
+        </div>
+
+        <!-- Add Socials Here -->
+        <div class="mt-6 flex gap-6 text-muted-foreground">
+            <a class="flex items-center" href="">
+                <Icon
+                    class="size-6 hover:text-primary transition"
+                    name="mdi:github"
+                />
+            </a>
+            <a class="flex items-center" href="">
+                <Icon
+                    class="size-6 hover:text-primary transition"
+                    name="mdi:linkedin"
+                />
+            </a>
+        </div>
+    </div>
+
+    <!-- Blogs -->
+    <div class="py-8 pb-10 px-8">
+        <h2 class="text-3xl sm:text-4xl">Posts</h2>
+        <ul>
+            {filteredPosts.map((post) => <BlogCardCompact post={post} />)}
+        </ul>
+    </div>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { BlogPost } from "../../env";
+import BlogCard from "../../components/BlogCard.astro";
+import type { Page } from "astro";
+
+export async function getStaticPaths({ paginate }) {
+    const posts = await getCollection("blog");
+    const sortedPosts = posts.sort(
+        (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+    );
+    console.log(sortedPosts);
+    return paginate(sortedPosts, {
+        pageSize: 1,
+        params: { base: "blog" },
+    });
+}
+
+const { page }: { page: Page } = Astro.props;
+const posts: BlogPost[] = page.data;
+---
+
+<Layout>
+    <div class="py-8 px-8">
+        <h2>Post</h2>
+        <div>
+            {page.data?.map((post: BlogPost) => <BlogCard post={post} />)}
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import type { BlogPost } from "../../env";
+
+const posts = await getCollection("blog");
+
+const tags = [...new Set(posts.map((post: BlogPost) => post.data.tags).flat())];
+---
+
+<div>
+    <ul>
+        {
+            tags.map((tag) => (
+                <li>
+                    <a href={`/tags/${tag}`}>{tag}</a>
+                </li>
+            ))
+        }
+    </ul>
+</div>

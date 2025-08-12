@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Portfolio Website",
+    "description": "A personal portfolio website to showcase my projects and skills.",
+    "demo": "https://myportfolio.example.com",
+    "github": "https://github.com/myusername/portfolio-website",
+    "technologies": ["Astro", "React", "Tailwind CSS"]
+  },
+  {
+    "title": "Task Manager App",
+    "description": "A web app for managing daily tasks with user authentication and real-time updates.",
+    "demo": "https://taskmanager.example.com",
+    "github": "https://github.com/myusername/task-manager-app",
+    "technologies": ["Vue", "Firebase", "Bootstrap"]
+  },
+  {
+    "title": "Blog Platform",
+    "description": "A modern blog platform with markdown support and SEO optimization.",
+    "demo": "https://blogplatform.example.com",
+    "github": "https://github.com/myusername/blog-platform",
+    "technologies": ["Next.js", "TypeScript", "MDX"]
+  }
+]
